@@ -14,14 +14,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/nexus-bank", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/nexus-bank/cards", produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
 @Validated
 public class CardsController {
 
     private ICardsService iCardsService;
 
-    @PostMapping("/create-card")
+    @PostMapping("/create")
     public ResponseEntity<ResponseDto> createCard(@Valid @RequestParam
                                                   @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
                                                   String mobileNumber) {
@@ -31,7 +31,7 @@ public class CardsController {
                 .body(new ResponseDto(CardsConstants.STATUS_201, CardsConstants.MESSAGE_201));
     }
 
-    @GetMapping("/fetch-cards")
+    @GetMapping("/fetch")
     public ResponseEntity<CardsDto> fetchCardDetails(@RequestParam
                                                      @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
                                                      String mobileNumber) {
@@ -39,7 +39,7 @@ public class CardsController {
         return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
     }
 
-    @PutMapping("/update-card")
+    @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateCardDetails(@Valid @RequestBody CardsDto cardsDto) {
         boolean isUpdated = iCardsService.updateCard(cardsDto);
         if (isUpdated) {
@@ -53,7 +53,7 @@ public class CardsController {
         }
     }
 
-    @DeleteMapping("/delete-card")
+    @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteCardDetails(@RequestParam
                                                          @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
                                                          String mobileNumber) {

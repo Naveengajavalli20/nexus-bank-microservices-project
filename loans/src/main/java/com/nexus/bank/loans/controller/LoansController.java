@@ -14,14 +14,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/nexus-bank/loans", produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
 @Validated
 public class LoansController {
 
     private ILoansService iLoansService;
 
-    @PostMapping("/create-loan")
+    @PostMapping("/create")
     public ResponseEntity<ResponseDto> createLoan(@RequestParam
                                                   @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
                                                   String mobileNumber) {
@@ -31,7 +31,7 @@ public class LoansController {
                 .body(new ResponseDto(LoansConstants.STATUS_201, LoansConstants.MESSAGE_201));
     }
 
-    @GetMapping("/fetch-loans")
+    @GetMapping("/fetch")
     public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam
                                                      @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
                                                      String mobileNumber) {
@@ -39,7 +39,7 @@ public class LoansController {
         return ResponseEntity.status(HttpStatus.OK).body(loansDto);
     }
 
-    @PutMapping("/update-loan")
+    @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDto loansDto) {
         boolean isUpdated = iLoansService.updateLoan(loansDto);
         if (isUpdated) {
@@ -53,7 +53,7 @@ public class LoansController {
         }
     }
 
-    @DeleteMapping("/delete-loan")
+    @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteLoanDetails(@RequestParam
                                                          @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
                                                          String mobileNumber) {
