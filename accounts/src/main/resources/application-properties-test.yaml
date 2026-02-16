@@ -1,0 +1,16 @@
+build:
+  version: "2.0.0"
+
+spring:
+  config:
+    activate:
+      on-profile: "test"
+
+accounts:
+  message: "Welcome to Nexus Bank accounts service"
+  contactDetails:
+    name: "Bhagya - QA Lead"
+    email: "bhagya@gmail.com"
+  onCallSupport:
+    - (666) 555-1234
+    - (666) 523-1345

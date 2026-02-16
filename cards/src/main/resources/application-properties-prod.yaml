@@ -1,0 +1,16 @@
+build:
+  version: "1.0.0"
+
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+cards:
+  message: "Welcome to Nexus Bank cards service"
+  contactDetails:
+    name: "Harsha - Technical Lead"
+    email: "harsha@gmail.com"
+  onCallSupport:
+    - (777) 555-1234
+    - (777) 523-1345

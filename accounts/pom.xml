@@ -8,9 +8,10 @@
 		<version>4.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nexus.bank</groupId>
+	<groupId>com.nexusbank</groupId>
 	<artifactId>accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 	<name>accounts</name>
 	<description>Microservice project for managing account details within Nexus Banking Platform</description>
 	<url/>
@@ -115,6 +116,16 @@
 					</excludes>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <to>
+                        <image>navs07/${project.artifactId}:v1</image>
+                    </to>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
