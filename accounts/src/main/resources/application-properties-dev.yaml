@@ -1,0 +1,16 @@
+build:
+  version: "3.0.0"
+
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+
+accounts:
+  message: "Welcome to Nexus Bank accounts service"
+  contactDetails:
+    name: "Naveen - Developer"
+    email: "naveen@gmail.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345
