@@ -1,8 +1,8 @@
 build:
   version: "2.0.0"
 
-accounts:
-  message: "Welcome to Nexus Bank accounts service"
+loans:
+  message: "Welcome to Nexus Bank loans service"
   contactDetails:
     name: "Bhagya - QA Lead"
     email: "bhagya@gmail.com"

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: configserver
+  profiles:
+#    active: native
+    active: git
+  cloud:
+    config:
+      server:
+#        native:
+#          searchLocations: classpath:/config
+        git:
+          uri: https://github.com/Naveengajavalli20/config-server.git
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+
+encrypt:
+    key: ejhd827bhs7zb2o1pq3ubxi
+
+server:
+  port: 8888
