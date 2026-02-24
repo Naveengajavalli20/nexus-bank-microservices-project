@@ -1,0 +1,73 @@
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    extends:
+      file: common-config.yaml
+      service: network-deploy-service
+
+  configserver:
+    image: "navs07/configserver:v1"
+    container_name: "config-server"
+    ports:
+      - "8888:8888"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8888/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yaml
+      service: microservice-base-config
+
+  accounts:
+    image: "navs07/accounts:v1"
+    container_name: "accounts-service"
+    ports:
+      - "8080:8080"
+    #      - "8090:8090"
+    environment:
+      SPRING_APPLICATION_NAME: accounts-service
+    extends:
+      file: common-config.yaml
+      service: microservice-configserver-config
+
+  cards:
+    image: "navs07/cards:v1"
+    container_name: "cards-service"
+    ports:
+      - "8081:8081"
+    #      - "8091:8091"
+    environment:
+      SPRING_APPLICATION_NAME: cards-service
+    extends:
+      file: common-config.yaml
+      service: microservice-configserver-config
+
+  loans:
+    image: "navs07/loans:v1"
+    container_name: "loans-service"
+    ports:
+      - "8082:8082"
+    #      - "8092:8092"
+    environment:
+      SPRING_APPLICATION_NAME: loans-service
+    extends:
+      file: common-config.yaml
+      service: microservice-configserver-config
+networks:
+  nexusbank-network:
+    driver: bridge
