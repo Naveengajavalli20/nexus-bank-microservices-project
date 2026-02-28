@@ -18,17 +18,33 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
+    shutdown:
+      access: unrestricted
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+info:
+  app:
+    name: "loans"
+    description: "Service for managing bank loans"
+    version: 1.0.0
 
 server:
   port: 8082

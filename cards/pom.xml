@@ -52,10 +52,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -96,6 +92,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 	</dependencies>
 
@@ -143,7 +143,7 @@
                 <version>3.5.1</version>
                 <configuration>
                     <to>
-                        <image>navs07/${project.artifactId}:v1</image>
+                        <image>navs07/${project.artifactId}:v3</image>
                     </to>
                 </configuration>
             </plugin>
